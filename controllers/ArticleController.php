@@ -3,11 +3,9 @@ require_once 'models/Article.php';
 class ArticleController{
     
     public function index(){
-        Util::isAdmin();
         $comment = new Article();
-        $comments = $comment->getComments();
-        var_dump($comments);
-        require_once 'views/main.php';
+        $comments = $comment->getArticle();
+        require_once 'views/article/main.php';
     }
     // public function entry(){
     //     // Util::isAdmin();

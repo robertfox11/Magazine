@@ -7,6 +7,7 @@ class Article {
     private $titulo;
     private $descripcion;
     private $fecha;
+    private $image;
     private $db;
     public function __construct() {
         $this->db = Database::connect();
@@ -65,6 +66,16 @@ class Article {
         $this->fecha = $fecha;
         return $this;
     }
+    public function getImage()
+    {
+        return $this->image;
+    }
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
     public function getDb()
     {
         return $this->db;
@@ -74,7 +85,7 @@ class Article {
         $this->db = $db;
         return $this;
     }
-    public function getComments(){
+    public function getArticle(){
         //Conseguiremos las entradas como category
         $sql = "SELECT e.*, c.name AS 'categoriaName' FROM article e INNER JOIN category c ON e.categoria_id = c.id ORDER BY e.id DESC LIMIT 5";
         // var_dump($sql);
@@ -83,7 +94,7 @@ class Article {
     }
     public function saveComment()
     {
-        $sql ="INSERT INTO article VALUES(NULL, {$this->getUsuario_id()},{$this->getCategoria_id()} ,'{$this->getTitulo()}','{$this->getDescripcion()}', CURDATE());";
+    $sql ="INSERT INTO article VALUES(NULL, {$this->getUsuario_id()},{$this->getCategoria_id()} ,'{$this->getTitulo()}','{$this->getDescripcion()}', CURDATE());, '{$this->getImage()}'";
         var_dump($sql);
         $save = $this->db->query($sql);
         echo $this->db->error;

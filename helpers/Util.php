@@ -22,12 +22,12 @@ public static function deleteSession($name){
 		return $categorys;
         
 	}
-	// public static function showComments(){
-	// 	require_once 'models/Comments.php'; 
-	// 	$comment = new Comments();
-	// 	$comments = $comment->getComments();
-	// 	return $comments;
+	public static function showArticle(){
+		require_once 'models/Article.php'; 
+		$article = new Article();
+		$article = $article->getArticle();
+		return $article;
         
-	// }
+	}
 }
 ?>
