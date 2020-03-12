@@ -1,64 +1,57 @@
-<?php
-class Categoria {
-    private $id;
-    private $name;
-    private $db;
-
-    public function __construct() {
-        $this->db = Database::connect();
+<?php 
+require_once 'models/Category.php';
+class CategoryController{
+    public function index(){
+        Util::isAdmin();
+        $category = new Category();
+        $categorys = $category->getCategory();
+        // var_dump($categorys);
+        require_once 'views/category/index.php';
     }
-    public function getId()
-    {
-        return $this->id;
+    public function entry(){
+        Util::isAdmin();
+        require_once 'views/category/entry.php';
     }
-
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    public function setName($name)
-    {
-        $this->name = $this->db->real_escape_string($name);
-
-        return $this;
-    }
-    public function getCategory(){
-        $sql= "SELECT * FROM category ORDER BY id DESC;";
-        $categorias = $this->db->query($sql);
-		return $categorias;
-    }
-    public function getOneCategory(){
-        $sql= "SELECT * FROM category WHERE id  = {$this->getId()};";
-        $categoria = $this->db->query($sql);
-		return $categoria->fetch_object();
-    }
-    public function saveCategory()
-    {
-        $sql ="INSERT INTO category VALUES(NULL, '{$this->getName()}');";
-        var_dump($sql);
-        $save = $this->db->query($sql);
-        var_dump($save);
-        $result = false;
-		if($save){
-			$result = true;
+    public function saveCategory(){
+        //usuario guardar category
+        Util::isAdmin();
+        if(isset($_POST) && isset($_POST['name'])){
+			// Guardar la categoria en bd
+			$categoria = new Category();
+            $categoria->setName($_POST['name']);
+            var_dump($categoria);
+			$save = $categoria->saveCategory();	
 		}
-		return $result;
+        header("Location:".URL."category/index");
+    }
+    public function updateCategory(){
+        Util::isAdmin();
+        //validation
+        if (isset($_GET['id'])) {
+            $id= $_GET['id'];
+            $edit = true;
+            $update = new Category();
+            $update->setId($id);
+            $upd =$update->getOneCategory();
+        }
+        require_once  'views/category/entry.php';
     }
     public function deleteCategory(){
-        $sql = "DELETE FROM category WHERE id={$this->id}";
-        $delete = $this->db->query($sql);
-        $result = false;
-		if($delete){
-			$result = true;
-		}
-		return $result;
+        Util::isAdmin();
+        $id = $_GET['id'];
+        if (isset($_GET['id'])) {
+            $delete = new Category();
+            $delete->setId($id);
+            $deletes = $delete->deleteCategory();
+            if ($deletes) {
+                $_SESSION['delete'] = 'complete';
+            }else{
+                $_SESSION['delete'] ='failed';
+            }
+        }else{
+            $_SESSION['delete'] ='failed';
+        }
+        header('Location:'.URL.'category/index');
     }
 }
 ?>
