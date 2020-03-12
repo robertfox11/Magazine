@@ -3,7 +3,9 @@ table {
     width: 100%;
     border-bottom: 1px solid #ccc;
 }
-
+a:link{
+    text-decoration:none;
+}
 td,
 th {
     border: 1px solid #dddddd;

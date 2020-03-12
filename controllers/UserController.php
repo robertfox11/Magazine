@@ -57,9 +57,8 @@ class UserController
 				$_SESSION['error_login'] = 'Identificación fallida !!';
             }
             var_dump(header("Location:".URL."index"));
-            // die()                                                                          
         }
-        // header("Location:".URL);
+        header("Location:".URL);
     }
     public function logout(){
         //comprobaremos si existe
