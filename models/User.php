@@ -71,27 +71,27 @@ class User {
 		}
 		return $result;
     }    
-    // public function login($usuario){
-	// 	$result = false;
-	// 	$email = $usuario;
-	//     // Comprobar si existe el usuario
-	// 	$sql = "SELECT * FROM usuarios WHERE email = '$email'";
-    //     // var_dump($sql);
-    //     $login = $this->db->query($sql);
+    public function login($usuario){
+		$result = false;
+		$email = $usuario;
+	    // Comprobar si existe el usuario
+		$sql = "SELECT * FROM usuarios WHERE email = '$email'";
+        // var_dump($sql);
+        $login = $this->db->query($sql);
 		
-    //     // var_dump($login);	
-	// 	if($login && $login->num_rows == 1){
-	// 		$usuario = $login->fetch_object();
+        // var_dump($login);	
+		if($login && $login->num_rows == 1){
+			$usuario = $login->fetch_object();
 	
-	// 		// Verificar la contraseña
-	// 		$verify = $usuario->email;			
-	// 		if($verify){
-	// 			$result = $usuario;
-	// 		}
-	// 	}
+			// Verificar la contraseña
+			$verify = $usuario->email;			
+			if($verify){
+				$result = $usuario;
+			}
+		}
 		
-	// 	return $result;
-    // }
+		return $result;
+    }
     
 }
 ?>

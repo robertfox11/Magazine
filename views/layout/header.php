@@ -41,21 +41,24 @@
 						<button type="button" id="dropdownMenu1" data-toggle="dropdown" class="btn btn-outline-secondary dropdown-toggle">Login <span class="caret"></span></button>
 						<ul class="dropdown-menu dropdown-menu-right mt-2">
 							<li class="px-3 py-2">
-								<form class="form" role="form">
+							<?php if (!isset($_SESSION['identity'])) : ?>
+								<form action="<?= URL ?>user/login" method="POST" class="form">
 									<div class="form-group">
-										<input id="emailInput" placeholder="Email" class="form-control form-control-sm" type="text" required="">
+									<input type="email" name="email" class="form-control form-control-sm" placeholder="Email" />
 									</div>
 									<div class="form-group">
-										<input id="passwordInput" placeholder="Password" class="form-control form-control-sm" type="text" required="">
-									</div>
-									<div class="form-group">
-										<button type="submit" class="btn btn-primary btn-block">Login</button>
+										<input type="submit" class="btn btn-primary btn-block" value="login">
 									</div>
 									<div class="form-group text-center">
-										<small><a href="#" data-toggle="modal" data-target="#modalPassword">Forgot password?</a></small>
 										<small><a href="<?= URL ?>user/register">Registrese aqui</a></small>
 									</div>
 								</form>
+								<?php else : ?>
+									<h3><?= $_SESSION['identity']->name ?> <?= $_SESSION['identity']->lastname ?></h3>
+								<?php endif; ?>
+							</li>
+							<li px-3 py-2>
+							<a class="category category-blue" href="<?= URL ?>user/logout">Logout</a>
 							</li>
 						</ul>
 					</li>

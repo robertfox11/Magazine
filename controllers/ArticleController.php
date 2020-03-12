@@ -7,7 +7,6 @@ class ArticleController{
         // $comments = $comment->getComments();
         // var_dump($comments);
         require_once 'views/main.php';
-        echo "hola";
     }
     // public function entry(){
     //     // Util::isAdmin();

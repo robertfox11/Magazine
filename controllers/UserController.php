@@ -10,6 +10,7 @@ class UserController
     {
         require 'views/user/register.php';
     }
+    
     public function saveUser()
     {
         //recoger datos
@@ -23,10 +24,7 @@ class UserController
                 $usuario->setName($name);
                 $usuario->setLastname($lastname);
                 $usuario->setEmail($email);
-                // $usuario->setPassword($password);
-                var_dump(($usuario));
                 $save = $usuario->save();
-                var_dump(($save));
                 if ($save) {
                     $_SESSION['register'] = "complete";
                 } else {
@@ -35,7 +33,6 @@ class UserController
             } else {
                 $_SESSION['register'] = "failed";
             }
-            // var_dump(($usuario));
         } else {
             $_SESSION['register'] = "failed";
             //si llega fallo
@@ -43,5 +40,36 @@ class UserController
         // header("Location: /index.php",TRUE,301);
         // header("Location:" . URL . "user/register");
     }
+    public function login(){
+        #comprobar si existe el usuario
+        if (isset($_POST)) {
+            # Identificar el usuario
+            $user = new User();
+            $identity =$user->login($_POST['email']);
+            //mantener usuario identificado
+            if($identity && is_object($identity)){
+				$_SESSION['identity'] = $identity;
+				//identificacion de administrador
+				if($identity->rol == 'admin'){
+					$_SESSION['admin'] = true;
+				}
+			}else{
+				$_SESSION['error_login'] = 'Identificación fallida !!';
+            }
+            var_dump(header("Location:".URL."index"));
+            // die()                                                                          
+        }
+        // header("Location:".URL);
+    }
+    public function logout(){
+        //comprobaremos si existe
+        if (isset($_SESSION['identity'])) {
+            unset($_SESSION['identity']);
+        }
+        //administrardor
+        if (isset($_SESSION['admin'])) {
+            unset($_SESSION['admin']);
+        }
+        header("Location:".URL);
+    }
 }
-?>
