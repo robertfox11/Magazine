@@ -1,11 +1,12 @@
 <?php
+require_once 'models/Article.php';
 class ArticleController{
     
     public function index(){
-        // Util::isAdmin();
-        // $comment = new Comments();
-        // $comments = $comment->getComments();
-        // var_dump($comments);
+        Util::isAdmin();
+        $comment = new Article();
+        $comments = $comment->getComments();
+        var_dump($comments);
         require_once 'views/main.php';
     }
     // public function entry(){

@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="<?= URL ?>assets/css/default.css">
 	<title>Magazine</title>
 </head>
-
 <body class="d-flex flex-column bg-light">
 	<header>
 		<!-- company logo navigation menu-->
