@@ -1,8 +1,12 @@
 <h1>Register</h1>
+<?php if(isset($_SESSION['register']) && $_SESSION['register'] == 'complete'): ?>
+	<strong class=".alert_green">Registro completado correctamente</strong>
+<?php elseif(isset($_SESSION['register']) && $_SESSION['register'] == 'failed'): ?>
+	<strong class="alert_red">Registro fallido, introduce bien los datos</strong>
+<?php endif; ?>
 
-<!-- index.php?controller=usuario&action=saveUser -->
 <div class="chief mb-5">
-<form action="<?= URL ?>usuario/saveUser" method="POST">
+<form action="<?= URL ?>user/saveUser" method="POST">
     <div class="form-group">
         <label for="name">Name</label>
         <input type="name" name="name" required />
