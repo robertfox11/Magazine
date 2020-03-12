@@ -1,5 +1,5 @@
 <?php
-class CommentsController{
+class ArticleController{
     
     public function index(){
         // Util::isAdmin();
