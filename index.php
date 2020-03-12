@@ -5,33 +5,32 @@ require_once 'config/config.php';
 require_once 'config/DataBase.php';
 // require_once 'helpers/Util.php';
 require_once 'views/layout/header.php';
-require_once 'views/layout/main.php';
-
+// require_once 'views/layout/main.php';
 function show_error(){
 	$error = new errorController();
 	$error->index();
 }
 
 if(isset($_GET['controller'])){
-	$nameController = $_GET['controller'].'Controller';
+	$nombre_controlador = $_GET['controller'].'Controller';
 
 }elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
-	$nameController = controller_default;
+	$nombre_controlador = controller_default;
 	
 }else{
 	show_error();
 	exit();
 }
 
-if(class_exists($nameController)){	
-	$controller = new $nameController();
+if(class_exists($nombre_controlador)){	
+	$controlador = new $nombre_controlador();
 	
-	if(isset($_GET['action']) && method_exists($controller, $_GET['action'])){
+	if(isset($_GET['action']) && method_exists($controlador, $_GET['action'])){
 		$action = $_GET['action'];
-		$controller->$action();
+		$controlador->$action();
 	}elseif(!isset($_GET['controller']) && !isset($_GET['action'])){
 		$action_default = action_default;
-		$controller->$action_default();
+		$controlador->$action_default();
 	}else{
 		show_error();
 	}

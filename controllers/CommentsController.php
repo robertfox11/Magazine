@@ -1,12 +1,13 @@
 <?php
 class CommentsController{
+    
     public function index(){
         // Util::isAdmin();
         // $comment = new Comments();
         // $comments = $comment->getComments();
         // var_dump($comments);
+        require_once 'views/main.php';
         echo "hola";
-        // require_once 'views/comments/index.php';
     }
     // public function entry(){
     //     // Util::isAdmin();

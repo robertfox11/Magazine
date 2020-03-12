@@ -8,7 +8,7 @@ class Database{
                 printf("connectar failed", $db->connect_error);
                 return $db;
             }
-            // var_dump($db);
+            var_dump($db);
             return $db;
         }
 }
