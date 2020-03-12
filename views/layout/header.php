@@ -13,15 +13,18 @@
 <body class="d-flex flex-column bg-light">
 	<header>
 		<!-- company logo navigation menu-->
+		<?php $categorys = Util::showCategory(); ?>
 		<nav class="navbar navbar-expand-lg navbar-dark">
 			<a class="navbar-brand " href="<?= URL ?>index.php">
 				<img class="d-inline-flex mx-5 mb-2 " width="150" height="40" src="<?= URL ?>assets/img/logoImproving.png" alt="logo">
 			</a>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav text-center headimg mb-2">
-					<li class="nav-item active mx-2 ">
-						<a class="nav-link text-dark" href="<?= URL ?>">Bebida</a>
-					</li>
+					<?php while ($cat = $categorys->fetch_object()) : ?>
+						<li class="nav-item active mx-2 ">
+							<a class="nav-link text-dark" href="<?= URL ?>category/ver&id=<?= $cat->id ?>"><?= $cat->name ?></a>
+						</li>
+					<?php endwhile; ?>
 				</ul>
 				<ul class="nav navbar-nav flex-row justify-content-between ml-auto">
 					<li class="nav-item order-2 order-md-1"><a href="#" class="nav-link" title="settings"><i class="fa fa-cog fa-fw fa-lg"></i></a></li>
