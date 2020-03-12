@@ -20,19 +20,7 @@
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav text-center headimg mb-2">
 					<li class="nav-item active mx-2 ">
-						<a class="nav-link text-dark" href="<?= URL ?>index.php">Bebida</a>
-					</li>
-					<li class="nav-item mx-2  ">
-						<a class="nav-link  text-dark" href="about.html">Frescos</a>
-					</li>
-					<li class="nav-item mx-2 ">
-						<a class="nav-link btn text-dark" href="services.html">Conservacion</a>
-					</li>
-					<li class="nav-item mx-2 ">
-						<a class="nav-link text-dark" href="galery.html">Mundo Animal</a>
-					</li>
-					<li class="nav-item mx-2 ">
-						<a class="nav-link text-dark" href="form.html">Distribución</a>
+						<a class="nav-link text-dark" href="<?= URL ?>">Bebida</a>
 					</li>
 				</ul>
 				<ul class="nav navbar-nav flex-row justify-content-between ml-auto">
