@@ -5,7 +5,7 @@ require_once 'config/config.php';
 require_once 'config/DataBase.php';
 require_once 'helpers/Util.php';
 require_once 'views/layout/header.php';
-// require_once 'views/layout/main.php';
+
 function show_error(){
 	$error = new errorController();
 	$error->index();

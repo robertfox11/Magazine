@@ -7,10 +7,10 @@ class ArticleController{
         $comments = $comment->getArticle();
         require_once 'views/article/main.php';
     }
-    // public function entry(){
-    //     // Util::isAdmin();
-    //     require_once 'views/comments/entry.php';
-    // }
+    public function entry(){
+        // Util::isAdmin();
+        require_once 'views/article/create.php';
+    }
     // public function saveComments(){
     //     //usuario guardar Comments
     //     // Util::isAdmin();

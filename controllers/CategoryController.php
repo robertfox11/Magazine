@@ -18,8 +18,7 @@ class CategoryController{
         if(isset($_POST) && isset($_POST['name'])){
 			// Guardar la categoria en bd
 			$categoria = new Category();
-            $categoria->setName($_POST['name']);
-            var_dump($categoria);
+            $categoria->setName($_POST['name']);    
 			$save = $categoria->saveCategory();	
 		}
         header("Location:".URL."category/index");
