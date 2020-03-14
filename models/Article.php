@@ -92,7 +92,8 @@ class Article {
         $article = $this->db->query($sql);
         return $article;
     }
-    public function saveComment()
+    //guardar articulos
+    public function saveArticle()
     {
     $sql ="INSERT INTO article VALUES(NULL, {$this->getUsuario_id()},{$this->getCategoria_id()} ,'{$this->getTitulo()}','{$this->getDescripcion()}', CURDATE());, '{$this->getImage()}'";
         var_dump($sql);
@@ -105,6 +106,24 @@ class Article {
 		}
 		return $result;
     }
+    public function edit(){
+		$sql = "UPDATE article SET titulo='{$this->getTitulo()}', descripcion='{$this->getDescripcion()}', categoria_id={$this->getCategoria_id()}  ";
+		
+		if($this->getImage() != null){
+			$sql .= ", image='{$this->getImage()}'";
+		}
+		
+		$sql .= " WHERE id={$this->id};";
+		
+		
+		$save = $this->db->query($sql);
+		
+		$result = false;
+		if($save){
+			$result = true;
+		}
+		return $result;
+	}
     public function deleteComment(){
         $sql = "DELETE FROM article WHERE id={$this->id}";
         $delete = $this->db->query($sql);

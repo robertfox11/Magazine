@@ -51,6 +51,7 @@
 										<li px-3 py-2>
 											<a class="category category-blue" href="<?= URL ?>user/logout">Logout</a>
 										</li>
+										<?php if (isset($_SESSION['admin'])) : ?>
 										<li>
 											<a href="<?= URL ?>datos/update" class="category btn-info">Mis Datos</a>
 										</li>
@@ -60,6 +61,10 @@
 										<li>
 											<a href="<?= URL ?>category/entry" class="category btn-secondary">Create Category</a>
 										</li>
+										<li>
+											<a href="<?= URL ?>article/entry" class="category btn-warning">Create Article</a>
+										</li>
+										<?php endif; ?>
 									</ul>
 								<?php endif; ?>
 								</li>
