@@ -52,16 +52,13 @@
 											<a class="category category-blue" href="<?= URL ?>user/logout">Logout</a>
 										</li>
 										<li>
-										<a href="<?= URL ?>category/index" class="category category-blue">Show Category</a>
+											<a href="<?= URL ?>datos/update" class="category btn-info">Mis Datos</a>
 										</li>
 										<li>
-											<a href="<?= URL ?>category/entry" class="btn btn-danger">Create Category</a>
+										<a href="<?= URL ?>category/index" class="category btn-primary">Show Category</a>
 										</li>
 										<li>
-											<a href="<?= URL ?>category/entry" class="category btn-danger">Update Category</a>
-										</li>
-										<li>
-											<a href="<?= URL ?>category/entry" class="category category-green">delete Category</a>
+											<a href="<?= URL ?>category/entry" class="category btn-secondary">Create Category</a>
 										</li>
 									</ul>
 								<?php endif; ?>

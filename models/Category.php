@@ -51,6 +51,19 @@ class Category {
 		}
 		return $result;
     }
+    public function updateCategoryModel()
+    {
+        $sql = "UPDATE category SET name='{$this->getName()}' ";
+        $sql .= " WHERE id={$this->id};";
+        var_dump($sql);
+        $save = $this->db->query($sql);
+        var_dump($save);
+        $result = false;
+		if($save){
+			$result = true;
+		}
+		return $result;
+    }
     public function deleteCategory(){
         $sql = "DELETE FROM category WHERE id={$this->id}";
         $delete = $this->db->query($sql);
@@ -61,4 +74,3 @@ class Category {
 		return $result;
     }
 }
-?>
