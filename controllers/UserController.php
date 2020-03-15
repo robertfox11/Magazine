@@ -37,8 +37,7 @@ class UserController
             $_SESSION['register'] = "failed";
             //si llega fallo
         }
-        // header("Location: /index.php",TRUE,301);
-        // header("Location:" . URL . "user/register");
+        header("Location:".URL);
     }
     public function login(){
         #comprobar si existe el usuario
@@ -56,7 +55,6 @@ class UserController
 			}else{
 				$_SESSION['error_login'] = 'Identificación fallida !!';
             }
-            var_dump(header("Location:".URL."index"));
         }
         header("Location:".URL);
     }

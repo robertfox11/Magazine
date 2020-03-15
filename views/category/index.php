@@ -2,6 +2,12 @@
 <a href="<?= URL ?>category/entry" class="button button-small">
 	Crear categoria
 </a>
+<?php if(isset($_SESSION['delete']) && $_SESSION['delete'] == 'complete'): ?>
+	<strong class="alert_green">El producto se ha borrado correctamente</strong>
+<?php elseif(isset($_SESSION['delete']) && $_SESSION['delete'] != 'complete'): ?>	
+	<strong class="alert_red">El producto NO se ha borrado correctamente</strong>
+<?php endif; ?>
+<?php Utils::deleteSession('delete'); ?>
 <table>
 	<tr>
 		<th>ID</th>

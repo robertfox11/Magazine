@@ -7,7 +7,6 @@ class User {
     private $email;
     private $rol;
     private $db; 
-
     public function __construct() {
 		$this->db = Database::connect();
     }
@@ -60,11 +59,16 @@ class User {
 
         return $this;
     }
+    public function getOneUser()
+    {
+        $sql = "SELECT * FROM usuarios WHERE id  = {$this->getId()}";
+        $user = $this->db->query($sql);
+        return $user->fetch_object();
+    }
     public function save(){
         $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->getName()}', '{$this->getLastname()}', '{$this->getEmail()}', '{$this->getRol()}');";
-        var_dump($sql);
         $save = $this->db->query($sql);
-        var_dump($save);
+        
         $result = false;
 		if($save){
 			$result = true;
@@ -76,13 +80,9 @@ class User {
 		$email = $usuario;
 	    // Comprobar si existe el usuario
 		$sql = "SELECT * FROM usuarios WHERE email = '$email'";
-        // var_dump($sql);
         $login = $this->db->query($sql);
-		
-        // var_dump($login);	
 		if($login && $login->num_rows == 1){
-			$usuario = $login->fetch_object();
-	
+			$usuario = $login->fetch_object();	
 			// Verificar la contraseña
 			$verify = $usuario->email;			
 			if($verify){

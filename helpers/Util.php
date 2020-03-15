@@ -29,5 +29,12 @@ public static function deleteSession($name){
 		return $article;
         
 	}
+	public static function getUser(){
+		require_once 'models/User.php'; 
+		$user = new User();
+		$users = $user->getOneUser();
+		return $users;
+        
+	}
 }
 ?>

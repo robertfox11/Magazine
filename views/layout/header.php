@@ -53,10 +53,10 @@
 										</li>
 										<?php if (isset($_SESSION['admin'])) : ?>
 										<li>
-											<a href="<?= URL ?>datos/update" class="category btn-info">Mis Datos</a>
+										<a href="<?= URL ?>category/index" class="category btn-primary">Show Category</a>
 										</li>
 										<li>
-										<a href="<?= URL ?>category/index" class="category btn-primary">Show Category</a>
+										<a href="<?= URL ?>article/updateArt" class="category btn-primary">Show Article</a>
 										</li>
 										<li>
 											<a href="<?= URL ?>category/entry" class="category btn-secondary">Create Category</a>

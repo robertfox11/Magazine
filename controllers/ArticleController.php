@@ -2,7 +2,6 @@
 require_once 'models/Article.php';
 class ArticleController
 {
-
     public function index()
     {
         $comment = new Article();
@@ -13,6 +12,13 @@ class ArticleController
     {
         // Util::isAdmin();
         require_once 'views/article/entry.php';
+    }
+    public function updateArt()
+    {
+        // Util::isAdmin();
+        $article = new Article();
+        $articles = $article->getArticle();
+        require_once 'views/article/index.php';
     }
     public function saveArticleController()
     {
@@ -51,8 +57,6 @@ class ArticleController
                 } else {
                     $save = $article->saveArticle();
                 }
-
-
                 if ($save) {
                     $_SESSION['article'] = "complete";
                 } else {
@@ -84,7 +88,7 @@ class ArticleController
         }
         header('Location:' . URL . 'article/main');
     }
-    public function updateArtcle()
+    public function updateArticle()
     {
         Util::isAdmin();
         if (isset($_GET['id'])) {

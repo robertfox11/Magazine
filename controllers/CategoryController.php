@@ -10,6 +10,10 @@ class CategoryController
         // var_dump($categorys);
         require_once 'views/category/index.php';
     }
+    public function Show()
+    {
+        require_once 'views/category/ver.php';
+    }
     public function entry()
     {
         Util::isAdmin();

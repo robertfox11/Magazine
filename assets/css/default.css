@@ -17,10 +17,10 @@ tr:nth-child(even) {
     background-color: red;
 }
 
-#header {
-    background: black;
-    padding: 10px;
-    text-align: center;
+textarea {
+    overflow: auto;
+    resize: vertical;
+    width: 100%;
 }
 
 .thumb{
@@ -90,38 +90,6 @@ tr:nth-child(even) {
 
 #chief p {
     color: rgb(80, 71, 71);
-}
-
-
-/* ver entradas comments */
-
-#lookEntry a {
-    display: block;
-    border-radius: 2px;
-    padding: 15px;
-    color: white;
-    background: blue;
-    border: 1px solid #156785;
-    cursor: pointer;
-    width: 160px;
-    margin: 0px auto;
-    margin-top: 35px;
-}
-
-
-/* estilos de register */
-
-.blockAside {
-    display: block;
-    width: 90%;
-    margin: 20px auto;
-    background: white;
-    padding: 10px;
-    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.3);
-}
-
-.blockAside h3 {
-    margin-bottom: 10px;
 }
 
 
@@ -203,12 +171,6 @@ input[type='submit'] {
 .category-blue {
     background: rgb(143, 143, 211);
 }
-img {
-    width: 10%;
-    vertical-align: middle;
-    border-style: none;
-}
-
 h1 {
     font-size: 24px;
     font-weight: normal;
@@ -224,7 +186,7 @@ h1 {
 .bg-info {
     background-color: #638ad6!important;
 }
-.cards {
+.s {
     position: relative;
     display: -ms-flexbox;
     display: flex;
@@ -235,4 +197,9 @@ h1 {
     background-color: #fff;
     background-clip: border-box;
     border-radius: .25rem;
+}
+.card-img {
+        width: 100%;
+        height: 200px;
+        border-radius: calc(.25rem - 1px);
 }
