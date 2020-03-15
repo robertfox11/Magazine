@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Article.php';
+require_once 'models/Category.php';
 class ArticleController
 {
     public function index()

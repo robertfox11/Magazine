@@ -95,6 +95,14 @@ class Article
         $article = $this->db->query($sql);
         return $article;
     }
+    public function getAllCategory(){
+		$sql = "SELECT p.*, c.name AS 'catnombre' FROM article p "
+				. "INNER JOIN category c ON c.id = p.categoria_id "
+				. "WHERE p.categoria_id = {$this->getCategoria_id()} "
+				. "ORDER BY id DESC";
+		$article = $this->db->query($sql);
+		return $article;
+	}
     public function getOneArticle()
     {
         $sql = "SELECT * FROM article WHERE id  = {$this->getId()}";

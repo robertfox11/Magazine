@@ -7,7 +7,7 @@
 <?php elseif(isset($_SESSION['delete']) && $_SESSION['delete'] != 'complete'): ?>	
 	<strong class="alert_red">El producto NO se ha borrado correctamente</strong>
 <?php endif; ?>
-<?php Utils::deleteSession('delete'); ?>
+<?php Util::deleteSession('delete'); ?>
 <table>
 	<tr>
 		<th>ID</th>

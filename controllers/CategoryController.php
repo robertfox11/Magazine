@@ -1,5 +1,6 @@
 <?php
 require_once 'models/Category.php';
+require_once 'models/Article.php';
 class CategoryController
 {
     public function index()
@@ -10,8 +11,18 @@ class CategoryController
         // var_dump($categorys);
         require_once 'views/category/index.php';
     }
-    public function Show()
+    public function ver()
     {
+        if (isset($_GET['id'])) {
+            $id = ($_GET['id']);
+            $category = new Category();
+            $category->setId($id);
+            $categorys = $category->getOneCategory();
+            //conseguir articles
+            $article = new Article();
+            $article->setCategoria_id($id);
+            $articles = $article->getAllCategory();
+        }
         require_once 'views/category/ver.php';
     }
     public function entry()

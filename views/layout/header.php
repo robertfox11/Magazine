@@ -15,7 +15,7 @@
 		<!-- company logo navigation menu-->
 		<?php $categorys = Util::showCategory(); ?>
 		<nav class="navbar navbar-expand-lg navbar-dark">
-			<a class="navbar-brand " href="<?= URL ?>index.php">
+			<a class="navbar-brand " href="<?= URL ?>">
 				<img class="d-inline-flex mx-5 mb-2 " width="150" height="40" src="<?= URL ?>assets/img/logoImproving.png" alt="logo">
 			</a>
 			<div class="collapse navbar-collapse">
