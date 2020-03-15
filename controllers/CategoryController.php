@@ -19,10 +19,11 @@ class CategoryController
     {
         //usuario guardar category
         Util::isAdmin();
-        if (isset($_POST) && isset($_POST['name'])) {
+        if (isset($_POST)) {
+            $name =isset($_POST['name']) ? $_POST['name'] : false;
             // Guardar la categoria en bd
                 $categoria = new Category();
-                $categoria->setName($_POST['name']);
+                $categoria->setName($name);
                 if(isset($_GET['id'])){
 					$id = $_GET['id'];
 					$categoria->setId($id);

@@ -35,7 +35,7 @@ class Category {
 		return $categorias;
     }
     public function getOneCategory(){
-        $sql= "SELECT * FROM category WHERE id  = {$this->getId()};";
+        $sql= "SELECT * FROM category WHERE id  = {$this->getId()}";
         $categoria = $this->db->query($sql);
 		return $categoria->fetch_object();
     }

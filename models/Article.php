@@ -1,6 +1,7 @@
 <?php
-class Article {
-    
+class Article
+{
+
     private $id;
     private $usuario_id;
     private $categoria_id;
@@ -9,7 +10,8 @@ class Article {
     private $fecha;
     private $image;
     private $db;
-    public function __construct() {
+    public function __construct()
+    {
         $this->db = Database::connect();
     }
     public function getId()
@@ -43,7 +45,7 @@ class Article {
     public function getTitulo()
     {
         return $this->titulo;
-    } 
+    }
     public function setTitulo($titulo)
     {
         $this->titulo = $this->db->real_escape_string($titulo);
@@ -85,53 +87,62 @@ class Article {
         $this->db = $db;
         return $this;
     }
-    public function getArticle(){
+    public function getArticle()
+    {
         //Conseguiremos las entradas como category
-        $sql = "SELECT e.*, c.name AS 'categoriaName' FROM article e INNER JOIN category c ON e.categoria_id = c.id ORDER BY e.id DESC LIMIT 5";
+        $sql = "SELECT e.*, c.name AS 'categoriaName' FROM article e INNER JOIN category c ON e.categoria_id = c.id ORDER BY e.id DESC LIMIT 8";
         // var_dump($sql);
         $article = $this->db->query($sql);
         return $article;
     }
+    public function getOneArticle()
+    {
+        $sql = "SELECT * FROM article WHERE id  = {$this->getId()}";
+        $article = $this->db->query($sql);
+        return $article->fetch_object();
+    }
     //guardar articulos
     public function saveArticle()
     {
-    $sql ="INSERT INTO article VALUES(NULL, {$this->getUsuario_id()},{$this->getCategoria_id()} ,'{$this->getTitulo()}','{$this->getDescripcion()}', CURDATE());, '{$this->getImage()}'";
+        $sql = "INSERT INTO article VALUES(NULL,{$this->getUsuario_id()} ,{$this->getCategoria_id()} ,'{$this->getTitulo()}','{$this->getDescripcion()}', CURDATE(), '{$this->getImage()}');";
         var_dump($sql);
         $save = $this->db->query($sql);
+        var_dump($save);
         echo $this->db->error;
+        die();
         $result = false;
-		if($save){
+        if ($save) {
             $result = true;
-
-		}
-		return $result;
+        }
+        return $result;
     }
-    public function edit(){
-		$sql = "UPDATE article SET titulo='{$this->getTitulo()}', descripcion='{$this->getDescripcion()}', categoria_id={$this->getCategoria_id()}  ";
-		
-		if($this->getImage() != null){
-			$sql .= ", image='{$this->getImage()}'";
-		}
-		
-		$sql .= " WHERE id={$this->id};";
-		
-		
-		$save = $this->db->query($sql);
-		
-		$result = false;
-		if($save){
-			$result = true;
-		}
-		return $result;
-	}
-    public function deleteComment(){
+    public function edit()
+    {
+        $sql = "UPDATE article SET titulo='{$this->getTitulo()}', descripcion='{$this->getDescripcion()}', categoria_id={$this->getCategoria_id()}  ";
+
+        if ($this->getImage() != null) {
+            $sql .= ", image='{$this->getImage()}'";
+        }
+
+        $sql .= " WHERE id={$this->id};";
+
+        var_dump($sql);
+        $save = $this->db->query($sql);
+        var_dump($save);
+        $result = false;
+        if ($save) {
+            $result = true;
+        }
+        return $result;
+    }
+    public function deleteArticleModel()
+    {
         $sql = "DELETE FROM article WHERE id={$this->id}";
         $delete = $this->db->query($sql);
         $result = false;
-		if($delete){
-			$result = true;
-		}
-		return $result;
+        if ($delete) {
+            $result = true;
+        }
+        return $result;
     }
 }
-?>

@@ -1,70 +1,100 @@
 <?php
 require_once 'models/Article.php';
-class ArticleController{
-    
-    public function index(){
+class ArticleController
+{
+
+    public function index()
+    {
         $comment = new Article();
         $comments = $comment->getArticle();
         require_once 'views/article/main.php';
     }
-    public function entry(){
+    public function entry()
+    {
         // Util::isAdmin();
-        require_once 'views/article/create.php';
+        require_once 'views/article/entry.php';
     }
-    public function saveArticleController(){
-        //usuario guardar Comments
+    public function saveArticleController()
+    {
+        //usuario guardar article
         Util::isAdmin();
-        if (isset($_SESSION['identity'])){
-            // $usuario_id = $_SESSION['identity']->id;
+        if (isset($_POST)) {
+            $usuario_id = $_SESSION['identity']->id;
             $categoria_id = isset($_POST['categoria_id']) ? $_POST['categoria_id'] : false;
             $titulo = isset($_POST['titulo']) ? $_POST['titulo'] : false;
-            $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;   
+            $descripcion = isset($_POST['descripcion']) ? $_POST['descripcion'] : false;
+            $image = isset($_POST['image']) ? $_POST['image'] : false;
             // Guardar la categoria en bd
-            if ($categoria_id && $titulo && $descripcion ) {
+            if ($categoria_id && $titulo && $descripcion) {
                 $article = new Article();
                 $article->setTitulo($titulo);
                 $article->setCategoria_id($categoria_id);
-                $article->setTitulo($titulo);
+                $article->setUsuario_id($usuario_id);
                 $article->setDescripcion($descripcion);
-                $save = $article->saveArticle();
-                if ($save) {
-                    $_SESSION['article'] ="complete";
-                }else{
-                    $_SESSION['article']="failed";
+                // if(isset($_FILES['image'])){
+                $file = $_FILES['image'];
+                $filename = $file['name'];
+                $mimetype = $file['type'];
+                if ($mimetype == "image/jpg" || $mimetype == 'image/jpeg' || $mimetype == 'image/png' || $mimetype == 'image/gif') {
+                    var_dump($file);
+                    if (!is_dir('uploads/images')) {
+                        mkdir('uploads/images', 0777, true);
+                    }
+                    $article->setImage($filename);
+                    move_uploaded_file($file['tmp_name'], 'uploads/images/' . $filename);
                 }
-            }else{
-                $_SESSION['article']="failed";
+                if (isset($_GET['id'])) {
+                    $id = $_GET['id'];
+                    $article->setId($id);
+
+                    $save = $article->edit();
+                } else {
+                    $save = $article->saveArticle();
+                }
+
+
+                if ($save) {
+                    $_SESSION['article'] = "complete";
+                } else {
+                    $_SESSION['article'] = "failed";
+                }
+            } else {
+                $_SESSION['article'] = "failed";
             }
-        }else{
+        } else {
             $_SESSION['article'] = "failed";
         }
-        header("Location:".URL);
+        header("Location:" . URL);
     }
-    public function deleteArticle(){
+    public function deleteArticle()
+    {
         Util::isAdmin();
         $id = $_GET['id'];
         if (isset($_GET['id'])) {
             $delete = new Article();
             $delete->setId($id);
-            $deletes = $delete->deleteComment();
+            $deletes = $delete->deleteArticleModel();
             if ($deletes) {
                 $_SESSION['delete'] = 'complete';
-            }else{
-                $_SESSION['delete'] ='failed';
+            } else {
+                $_SESSION['delete'] = 'failed';
             }
-        }else{
-            $_SESSION['delete'] ='failed';
+        } else {
+            $_SESSION['delete'] = 'failed';
         }
-        header('Location:'.URL.'comments/index');
+        header('Location:' . URL . 'article/main');
     }
-    public function updateComments(){
+    public function updateArtcle()
+    {
         Util::isAdmin();
-        $edit = true;
-        //validation
         if (isset($_GET['id'])) {
-            
+            $id = $_GET['id'];
+            $edit = true;
+            $update = new Article();
+            $update->setId($id);
+            //validation
+            $upd = $update->getOneArticle();
         }
-        require_once 'views/comments/entry.php';
+        require_once 'views/article/entry.php';
     }
 }
-?>

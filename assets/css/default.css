@@ -23,25 +23,10 @@ tr:nth-child(even) {
     text-align: center;
 }
 
-#blog {
-    width: 85%;
-    height: auto;
-    /* background: transparent; */
-    margin: 0 auto;
-    /* border: 1px solid black; */
-    color: white;
-    text-align: center;
-}
-
-#footer {
-    padding: 20px;
-    background: #ccc;
-}
-
-#main {
-    padding: 20px 0;
-    width: 500px;
-    margin: 0 auto;
+.thumb{
+    width: 10%;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
 }
 
 
@@ -218,20 +203,11 @@ input[type='submit'] {
 .category-blue {
     background: rgb(143, 143, 211);
 }
-
-/* footer {
-    clear: both;
-    margin: 0 auto;
-    background: lightcyan;
-    width: 85%;
-    border: 1px solid cadetblue;
-    border-bottom: none;
-    border-radius: 8px;
-    color: #666666;
-    height: auto;
-    padding: 15px;
-    text-align: center;
-} */
+img {
+    width: 10%;
+    vertical-align: middle;
+    border-style: none;
+}
 
 h1 {
     font-size: 24px;
