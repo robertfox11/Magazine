@@ -28,7 +28,6 @@ class User {
     public function setName($name)
     {
         $this->name = $this->db->real_escape_string($name);
-        // $this->name = $name;
         return $this;
     }
     public function getLastname()
@@ -37,9 +36,7 @@ class User {
     }
     public function setLastname($lastname)
     {
-        // $this->lastname = $lastname;
         $this->lastname = $this->db->real_escape_string($lastname);
-        // return $this;
     } 
     public function getEmail()
     {
@@ -56,7 +53,6 @@ class User {
     public function setRol($rol)
     {
         $this->rol = $rol;
-
         return $this;
     }
     public function getOneUser()
@@ -68,7 +64,6 @@ class User {
     public function save(){
         $sql = "INSERT INTO usuarios VALUES(NULL, '{$this->getName()}', '{$this->getLastname()}', '{$this->getEmail()}', '{$this->getRol()}');";
         $save = $this->db->query($sql);
-        
         $result = false;
 		if($save){
 			$result = true;
@@ -89,9 +84,7 @@ class User {
 				$result = $usuario;
 			}
 		}
-		
 		return $result;
     }
-    
 }
 ?>

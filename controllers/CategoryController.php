@@ -8,7 +8,6 @@ class CategoryController
         Util::isAdmin();
         $category = new Category();
         $categorys = $category->getCategory();
-        // var_dump($categorys);
         require_once 'views/category/index.php';
     }
     public function ver()
@@ -47,7 +46,6 @@ class CategoryController
                     $save = $categoria->saveCategory();
                     var_dump($save);
 				}
-                //     
             header("Location:" . URL . "category/index");
         }
     }

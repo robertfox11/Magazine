@@ -31,7 +31,6 @@ class Article
     public function setUsuario_id($usuario_id)
     {
         $this->usuario_id = $this->db->real_escape_string($usuario_id);
-        // return $this;
     }
     public function getCategoria_id()
     {
@@ -40,7 +39,6 @@ class Article
     public function setCategoria_id($categoria_id)
     {
         $this->categoria_id = $this->db->real_escape_string($categoria_id);
-        // return $this;
     }
     public function getTitulo()
     {
@@ -49,7 +47,6 @@ class Article
     public function setTitulo($titulo)
     {
         $this->titulo = $this->db->real_escape_string($titulo);
-        // return $this;
     }
     public function getDescripcion()
     {
@@ -127,16 +124,11 @@ class Article
     public function edit()
     {
         $sql = "UPDATE article SET titulo='{$this->getTitulo()}', descripcion='{$this->getDescripcion()}', categoria_id={$this->getCategoria_id()}  ";
-
         if ($this->getImage() != null) {
             $sql .= ", image='{$this->getImage()}'";
         }
-
         $sql .= " WHERE id={$this->id};";
-
-        var_dump($sql);
         $save = $this->db->query($sql);
-        var_dump($save);
         $result = false;
         if ($save) {
             $result = true;
